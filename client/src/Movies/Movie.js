@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import axios from 'axios';
 
 const Movie = (props) => {
+  const { movies , addToSavedList } = props
+  console.log(movies)
+
   const [movie, setMovie] = useState();
+  const { itemId } = useParams()
+
+  const item = 
+    movies.find((movieItem) => {
+      return movieItem.id == itemId;
+    }) || {}
+    console.log(item)
  
   useEffect(() => {
-    const id = 1;
+    const id = item.id
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
@@ -47,7 +58,7 @@ const Movie = (props) => {
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div className="save-button" onClick={() => addToSavedList(movie.id)}>Save</div>
     </div>
   );
 }
