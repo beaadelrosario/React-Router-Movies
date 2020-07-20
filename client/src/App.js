@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { Route } from 'react-router-dom';
 import SavedList from './Movies/SavedList';
 
 const App = () => {
@@ -29,6 +29,15 @@ const App = () => {
     <div>
       <SavedList list={[ /* This is stretch */]} />
       <div>Replace this Div with your Routes</div>
+
+    {/* **This component will need the movies injected into it via props**. */}
+    <Route path={`${getMovies}/movies/:itemId`}>
+      <Movie />
+    </Route>
+
+    <Route path='/'>
+      <Movielist />
+    </Route>
     </div>
   );
 };
